@@ -44,6 +44,11 @@
                         <td>{{ $row->nama_kategori }}</td>
                         <td>
                             <a href="{{ url('kategori-items/'.$row->id) }}" class="btn btn-info btn-sm">View Detail</a>
+                            <a href="{{ url('kategori-items/delete/'.$row->id) }}" 
+                                class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Yakin ingin menghapus kategori ini? Item yang terkait tidak akan terhapus, hanya relasinya saja.')">
+                                Hapus
+                            </a>
                         </td>
                     </tr>
                     @endforeach
