@@ -18,6 +18,19 @@
                             <td>{{$data->nama}}</td>
                         </tr>
                         <tr>
+                            <th>Kategori Items</th>
+                            <td>:</td>
+                            <td>
+                                @forelse($data->KategoriItems as $kat)
+                                    <span class="badge bg-info text-dark">
+                                        {{ $kat->nama_kategori }} ({{ $kat->kode_kategori }})
+                                    </span>
+                                @empty
+                                    <span class="text-muted">Tidak ada kategori</span>
+                                @endforelse
+                            </td>
+                        </tr>
+                        <tr>
                             <th>Harga Beli</th>
                             <td>:</td>
                             <td>{{$data->harga_beli}}</td>
@@ -41,6 +54,20 @@
                             <th>Jenis</th>
                             <td>:</td>
                             <td>{{$data->jenis}}</td>
+                        </tr>
+                        <tr>
+                            <th>File</th>
+                            <td>:</td>
+                            <td>@if(!empty($data->photo))
+                                    <img
+                                        src="{{ asset('storage/'.$data->photo) }}"
+                                        alt="Foto Item"
+                                        style="max-width:200px;border:1px solid #ddd;padding:4px"
+                                    >
+                                @else
+                                    <span>-</span>
+                                @endif
+                            </td>
                         </tr>
                     </table>
                     <a class="btn btn-info" href="{{url('master-items/form/edit')}}/{{$data->id}}">Edit</a>

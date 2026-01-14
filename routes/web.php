@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MasterItemsController;
+use App\Http\Controllers\KategoriItemsController;
+use App\Exports\MasterItemsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +36,10 @@ Route::get('/master-items/delete/{id}', [App\Http\Controllers\MasterItemsControl
 
 
 Route::get('/master-items/update-random-data', [App\Http\Controllers\MasterItemsController::class, 'updateRandomData']);
+
+Route::get('kategori-items', [KategoriItemsController::class,'index']);
+Route::post('kategori-items', [KategoriItemsController::class,'store']);
+Route::get('kategori-items/{id}', [KategoriItemsController::class,'show']);
+
+Route::get('kategori-items/{id}/export-pdf', [KategoriItemsController::class, 'exportPdf']);
+Route::get('master-items/export-excel', [MasterItemsController::class, 'exportExcel']);
