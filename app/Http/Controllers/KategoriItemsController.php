@@ -38,6 +38,15 @@ class KategoriItemsController extends Controller
         return redirect('kategori-items');
     }
 
+    public function destroy($id)
+    {
+        $kategori = KategoriItem::findOrFail($id);
+        $kategori->masterItems()->detach();
+        $kategori->delete();
+
+        return redirect('kategori-items')->with('success', 'Kategori berhasil dihapus');
+    }
+
     public function show($id)
     {
         $kategori = KategoriItem::with('masterItems')->findOrFail($id);
